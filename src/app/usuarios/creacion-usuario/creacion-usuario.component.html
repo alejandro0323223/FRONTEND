@@ -1,0 +1,94 @@
+<div class="ui-g ui-fluid">
+    <div class="ui-g form-group">
+        <div class="ui-g-12 ui-md-12">
+            <div class="ui-g-12 ui-md-3">
+                <label>Tipo Documento</label>
+                <p-dropdown [options]="tiposDocs" [(ngModel)]="tipoDoc"></p-dropdown>
+            </div>
+            <div class="ui-g-12 ui-md-3">
+                <label>Numero Documento</label>
+                <input type="text" pInputText placeholder="Numero Documento" [(ngModel)]="user.pe_rut">
+            </div>
+            <div class="ui-g-12 ui-md-3" *ngIf="disablePass" >
+                <label>Nombre Usuario</label>
+                <input type="text"  [disabled]="true" pInputText placeholder="Nombres" [(ngModel)]="user.us_consuser">
+            </div>
+            <div class="ui-g-12 ui-md-3" *ngIf="!disablePass">
+                <label>Password</label>
+                <input  [disabled]="disablePass" type="password" pPassword [(ngModel)]="pass1"
+                weakLabel="Débil" mediumLabel="Medio" strongLabel="Fuerte">
+            </div>
+            <div class="ui-g-12 ui-md-3" *ngIf="!disablePass">
+                <label>Password2</label>
+                <input [disabled]="disablePass" type="password" pPassword [(ngModel)]="pass2"
+                        weakLabel="Débil" mediumLabel="Medio" strongLabel="Fuerte">
+            </div>
+        </div>
+        <div class="ui-g-12 ui-md-12">
+            <div class="ui-g-12 ui-md-3">
+                <label>Nombres</label>
+                <input type="text" pInputText placeholder="Nombres" [(ngModel)]="user.pe_nombres">
+            </div>
+            <div class="ui-g-12 ui-md-3">
+                <label>Apellido Paterno</label>
+                <input type="text" pInputText placeholder="Apellido Paterno" [(ngModel)]="user.pe_appaterno">
+            </div>
+            <div class="ui-g-12 ui-md-3">
+                <label>Apellido Materno</label>
+                <input type="text" pInputText placeholder="Apellido Materno" [(ngModel)]="user.pe_apemanterno">
+            </div>
+            <div class="ui-g-12 ui-md-3">
+                <label>Email</label>
+                <input type="text" pInputText placeholder="Email" [(ngModel)]="user.pe_email">
+            </div>
+        </div>
+        <div class="ui-g-12 ui-md-12">
+            <div class="ui-g-12 ui-md-3">
+                <label>Teléfono</label>
+                <input type="text" pInputText placeholder="Telefono" [(ngModel)]="user.pe_telefono">
+            </div>
+            <div class="ui-g-12 ui-md-3">
+                <label>Región</label>
+                <p-dropdown [options]="regiones"  (onChange)="selectRegion()" [(ngModel)]="region" filter="true"></p-dropdown>
+            </div>
+            <div class="ui-g-12 ui-md-3">
+                <label>Comuna</label>
+                <p-dropdown [options]="comunas"  [(ngModel)]="comuna" filter="true"></p-dropdown>
+            </div>
+            <div class="ui-g-12 ui-md-3">
+                <label>Dirección</label>
+                <input type="text" pInputText placeholder="Dirección" [(ngModel)]="user.direccion">
+            </div>
+        </div>
+        <div class="ui-g-12 ui-md-12">
+            <div class="ui-g-12 ui-md-4 ui-md-offset-4">
+                <div class="ui-g-12 ui-md-6" *ngIf="btnLimpiar">
+                    <button pButton type="button" label="Limpiar" (click)="limpiarForm()"
+                    class="ui-button-rounded"></button>
+                </div>
+                <div class="ui-g-12 ui-md-6"  *ngIf="!btnLimpiar">
+                    <button pButton type="button" label="Cerrar" (click)="close()"
+                    class="ui-button-rounded"></button>
+                </div>
+                <div class="ui-g-12 ui-md-6">
+                    <button pButton type="button" label="Guardar" (click)="guardarDatosUsuario()"
+                    class="ui-button-rounded"></button>
+                </div>
+            </div>
+        </div>
+        <div class="ui-g-12 ui-md-12" *ngIf="mostrarErrores">
+            <p-table [value]="listErrores">
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th>Errores</th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-car>
+                    <tr>
+                        <td>{{car}}</td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
+    </div>
+</div>

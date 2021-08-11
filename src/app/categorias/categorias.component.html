@@ -1,0 +1,111 @@
+
+
+ 
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                  
+                    <div class="card-header card-header-rose">
+                        <h4 class="card-title ">Listado pensionados recibidos </h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                          <table class="table table-striped">
+                            <thead>
+                              <tr>
+                                <th scope="col">Nombres</th>
+                                <th scope="col">Apellidos</th>
+                                <th scope="col">Edad</th>
+                                <th scope="col">Contribucion</th>
+                                <th scope="col">Pensión</th>
+                                <th scope="col">Afp</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <th scope="row">Agustin </th>
+                                <td>Vejar Reyes</td>
+                                <td>59</td>
+                                <td><p style="color: red;font-size: 18px;">↓ $123.926</p></td>
+                                <td><p style="color: green;font-size: 18px;">↑ $17.426.145</p></td>
+                                <td>HABITAT</td>
+                              </tr>
+                              <tr>
+                                <th scope="row">Rolando </th>
+                                <td>Martinez Rocco</td>
+                                <td>41</td>
+                                <td><p style="color: red;font-size: 18px;">↓ $823.569</p></td>
+                                <td><p style="color: green;font-size: 18px;">↑ $7.268.823</p></td>
+                                <td>HABITAT</td>
+                              </tr>
+                              <tr>
+                                <th scope="row">Ismael </th>
+                                <td>Fernandez Juevewnal</td>
+                                <td>26</td>
+                                <td><p style="color: red;font-size: 18px;">↓ $596.462</p></td>
+                                <td><p style="color: green;font-size: 18px;">↑ $2.124.596</p></td>
+                                <td>HABITAT</td>
+                              </tr>
+                              <tr>
+                                <th scope="row">Fernando </th>
+                                <td>Torres Reina</td>
+                                <td>69</td>
+                                <td><p style="color: red;font-size: 18px;">↓ $238.444</p></td>
+                                <td><p style="color: green;font-size: 18px;">↑ $9.896.112</p></td>
+                                <td>HABITAT</td>
+                              </tr>
+                              
+                            </tbody>
+                          </table>
+
+                        </div>
+                    </div>
+                     <!-- Modal -->
+  <div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title"></h4>
+        </div>
+        <div class="modal-body">
+          <p></p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+                </div>
+            </div>
+         
+        </div>
+    </div>
+  </div>
+
+  <script>
+
+
+$(function(){
+    $('#myModal').modal({
+        keyboard: true,
+        backdrop: "static",
+        show:false,
+        
+    }).on('show', function(){
+          var getIdFromRow = $(event.target).closest('tr').data('id');
+        //make your ajax call populate items or what even you need
+        $(this).find('#orderDetails').html($('<b> Order Id selected: ' + getIdFromRow  + '</b>'))
+    });
+});
+
+
+
+
+</script>

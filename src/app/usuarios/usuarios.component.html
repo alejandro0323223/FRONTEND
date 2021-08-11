@@ -1,0 +1,52 @@
+<div class="ui-g ui-fluid">
+    <p-toast  [baseZIndex]="100"></p-toast>
+    <div class="ui-g-12 ui-lg-12">
+        <p-panel header="Lista de Usuarios">
+            <p-table [columns]="cols" [value]="lista" [resizableColumns]="true" sortMode="multiple">
+                <ng-template pTemplate="header" let-columns>
+                    <tr>
+                        <th  [pSortableColumn]="col.field" *ngFor="let col of columns">
+                            {{col.header}}
+                            <p-sortIcon [field]="col.field"></p-sortIcon>
+                        </th>
+                        <th style="width:8em">Acciones</th>
+                    </tr>
+                    <tr>
+                        <th *ngFor="let col of columns">
+                            <input *ngIf="col.tipo=='txt'" type="text" pInputText [(ngModel)]="busqueda[col.field]">
+                            <p-checkbox [(ngModel)]="busqueda[col.field]" *ngIf="col.tipo=='bool'"  binary="true"></p-checkbox>
+                            <p-calendar [(ngModel)]="busqueda[col.field]" appendTo="body"  selectionMode="range" [readonlyInput]="true" *ngIf="col.tipo=='date'"></p-calendar>
+                        </th>
+                        <th style="width:8em">
+                            <button pButton title="Limpiar" (click)="limpiarBusqueda()" icon="fa fa-eraser" 
+                            class="ui-button-warning button-shadow"></button>
+                            <button pButton title="Filtrar" (click)="buscarResultados()" icon="fa fa-search" 
+                            class="ui-button-info button-shadow"></button>
+                            <button pButton title="Agregar Usuario" (click)="agregarUsuario()" icon="fa fa-plus" 
+                            class="ui-button-success button-shadow"></button>
+                        </th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-rowData let-columns="columns">
+                    <tr>
+                        <td style="text-align:center" *ngFor="let col of columns">
+                            {{ col.type ? col.type.transform(rowData[col.field], col.arg1,col.arg2) : rowData[col.field] }}
+                        </td>
+                        <td style="text-align:center; width:8em">
+                            <button pButton icon="fa fa-fw fa-list"
+                                (click)="seleccionarRow(rowData);cm.show($event);$event.stopPropagation();"
+                                class="ui-button-info button-shadow"></button>
+                        </td>
+                    </tr>
+                </ng-template>
+            </p-table>
+
+            <div style="margin: auto;">
+                <p-paginator [rows]="maximoResultado" [totalRecords]="totalResultados" pageLinkSize="3"
+                    [rowsPerPageOptions]="[10,20,50,100]" (onPageChange)="paginate($event)" #pag></p-paginator>
+            </div>
+            <p-contextMenu #cm [model]="acciones" appendTo="body"></p-contextMenu>
+        </p-panel>
+        <p-confirmDialog header="Confirmación" icon="pi pi-exclamation-triangle"></p-confirmDialog>
+    </div>
+</div>
